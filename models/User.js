@@ -21,16 +21,20 @@ const UserSchema = new Schema({
     },
     gender: {
         type: String,
-        required: false
+        required: true
     },
     phone_number: {
         type: String,
-        required: [false, 'Please enter your contact information'],
+        required: [true, 'Please enter your contact information'],
         match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Enter a valid phone number']
     },
     credit_card: {
         type: Number,
         required: [false, 'Please enter your card details']
+    },
+    imageUrl1:{
+        type: String,
+        required: false 
     },
     register_date: {
         type: Date,

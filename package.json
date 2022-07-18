@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ShubhamSr1102/drug-store-ecommerce.git"
+    "url": "git+ssh://git@github.com/ShubhamSr1102/DrugStoreEcommerce.git"
   },
   "author": "Shubham Srivastava",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ShubhamSr1102/drug-store-ecommerce/issues"
+    "url": "https://github.com/ShubhamSr1102/DrugStoreEcommerce/issues"
   },
-  "homepage": "https://github.com/ShubhamSr1102/drug-store-ecommerce#readme",
+  "homepage": "https://github.com/ShubhamSr1102/DrugStoreEcommerce#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "concurrently": "^5.3.0",

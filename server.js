@@ -7,7 +7,7 @@ const authRoutes = require('./routes/auth');
 const itemRoutes = require('./routes/item');
 const cartRoutes = require('./routes/cart');
 const orderRoutes = require('./routes/order');
-
+const profileRoutes = require('./routes/profile');
 
 const app = express();
 app.use(express.json());
@@ -16,6 +16,7 @@ app.use('/api',authRoutes);
 app.use('/api',itemRoutes);
 app.use('/api',cartRoutes);
 app.use('/api',orderRoutes);
+app.use('/api',profileRoutes);
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
