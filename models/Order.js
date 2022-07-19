@@ -12,6 +12,10 @@ const OrderSchema = new Schema({
             ref: "item"
         },
         name: String,
+        imageUrl1:{
+            type: String,
+            required: false 
+        },
         quantity: {
             type: Number,
             required: true,

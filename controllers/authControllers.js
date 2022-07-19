@@ -4,9 +4,9 @@ const config = require('config');
 const bcrypt = require('bcrypt');
 
 module.exports.signup = (req,res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, gender, phone_number} = req.body;
 
-    if(!name || !email || !password){
+    if(!name || !email || !password || !gender || !phone_number){
         res.status(400).json({msg: 'Please enter all fields'});
     }
 
@@ -14,7 +14,7 @@ module.exports.signup = (req,res) => {
     .then(user => {
         if(user) return res.status(400).json({msg: 'User already exists'});
 
-        const newUser = new User({ name, email, password });
+        const newUser = new User({ name, email, password, gender, phone_number});
 
         // Create salt and hash
         bcrypt.genSalt(10, (err, salt) => {
@@ -34,7 +34,9 @@ module.exports.signup = (req,res) => {
                                     user: {
                                         id: user._id,
                                         name: user.name,
-                                        email: user.email
+                                        email: user.email,
+                                        phone_number:user.phone_number,
+                                        gender:user.gender
                                     }
                                 });
                             }
@@ -70,7 +72,9 @@ module.exports.login = async (req,res) => {
                                 user: {
                                     id: user._id,
                                     name: user.name,
-                                    email: user.email
+                                    email: user.email,
+                                    phone_number:user.phone_number,
+                                    gender:user.gender
                                 }
                             });
                         }
@@ -80,7 +84,26 @@ module.exports.login = async (req,res) => {
 }
 
 module.exports.get_user = (req,res) => {
+  //  console.log(req.user)
     User.findById(req.user.id)
-        .select('-password')
-        .then(user => res.json(user));
+        // .select('-password')
+        .then(user => {
+            // console.log("fadsfhdsadfhaslkdfhkasdfh;"+user)
+
+            res.json(user)});
+}
+
+module.exports.updateUser=async(req,res)=>{
+    console.log(req.body);
+    let user = await User.findOne({_id:req.body.id});
+    // console.log("herefasfas" + user)
+
+    user.name=req.body.name;
+    user.phone_number=req.body.phone_number;
+    user.credit_card=req.body.credit_card;
+    
+    await user.save();
+    // let user= await User.findByIdAndUpdate(req.body.id,req.body.user);
+    // console.log("---------")
+    // console.log(user)
 }

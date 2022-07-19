@@ -19,50 +19,9 @@ module.exports.get_cart_items = async (req,res) => {
 
         let cart = await Cart.findOne({userId});
         let result=await processUsers(cart.items)
-        // cart.newArr.push(result);
-        // console.log( cart)
-        // console.log(cart.items.length)
-        // console.log("result"+result.length)
-
-        // cart=[...cart,result]
-
-        // if(cart && cart.items.length>0){
-        //     for(var i=0;i<cart.items.length;i++){
-        //         var drugName=result[i].drug_name;
-        //         cart={...cart.items[i],drugName}
-        //     }
-        // }
         
-        // for (const c in cart) {
-        //     console.log(c)
-        //   }
 
-       
-        // let promises=[];
-        //  await cart.items.forEach((item)=>{
-        //    Item.findOne({_id: item.productId}).then(function(item){
-        //         console.log("hhasdfjlsadfhalsjkdhf")
-        //         promises.push(item);
-        //         // itemData.push(item)
-        //             });
-        // })
-        //  result= Promise.all(promises)
-            // console.log("result"+ result)
-        
         if(cart && cart.items.length>0){
-            // console.log(cart.items)
-            // let itemData=[];
-            // await cart.items.map((item)=>{
-            //    Item.findOne({_id: item.productId}).then(function(item){
-            //         console.log("hhasdfjlsadfhalsjkdhf")
-            //         itemData=[...itemData,item];
-
-            //         // itemData.push(item)
-            //             });
-            // })
-            
-            // console.log(cart)
-
             res.send({cart,result});
         }
         else{
@@ -74,19 +33,7 @@ module.exports.get_cart_items = async (req,res) => {
         res.status(500).send("Something went wrong");
     }
 }
-// 
-// module.exports.get_item = (req,res) => {
-//     console.log("hiii")
-//     console.log(req.params.id)
-//     // Item.findById({_id:req.params.id}).then(function(item){
-//     //     console.log(item);
-//     //     res.json("a");
-//     // });
-//     Item.findOne({_id: req.params.id}).then(function(item){
-//         console.log(item);
-//         return res.json(item);
-//     });
-// }
+
 
 
 module.exports.add_cart_item = async (req,res) => {

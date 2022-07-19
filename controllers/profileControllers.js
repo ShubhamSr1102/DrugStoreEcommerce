@@ -5,6 +5,15 @@ module.exports.get_user = (req,res) => {
     User.find({userId}).sort({date:-1}).then(users => res.json(users));
 }
 
+
+
+module.exports.get_userDetails = (req,res) => {
+    const userId = req.params.id;
+    // console.log(userId);
+    // User.find({userId}).sort({date:-1}).then(users => res.json(users));
+}
+
+
 module.exports.post_user = (req,res) => {
     const newUser = new User(req.body);
     newUser.save().then(user => res.json(user));

@@ -26,7 +26,7 @@ const UserSchema = new Schema({
     phone_number: {
         type: String,
         required: [true, 'Please enter your contact information'],
-        match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Enter a valid phone number']
+        match: [/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/, 'Enter a valid phone number']
     },
     credit_card: {
         type: Number,
