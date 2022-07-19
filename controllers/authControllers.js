@@ -7,7 +7,17 @@ module.exports.signup = (req,res) => {
     const { name, email, password, gender, phone_number} = req.body;
 
     if(!name || !email || !password || !gender || !phone_number){
-        res.status(400).json({msg: 'Please enter all fields'});
+        return res.status(400).json({msg: 'Please enter all fields'});
+    }
+
+    if(password.length<6){
+        return res.status(400).json({msg: 'Password minimum length is 6'});
+
+    }
+
+    if(phone_number.length<10){
+        return res.status(400).json({msg: 'Please enter valid phone number'});
+
     }
 
     User.findOne({email})
@@ -88,7 +98,7 @@ module.exports.get_user = (req,res) => {
     User.findById(req.user.id)
         // .select('-password')
         .then(user => {
-            // console.log("fadsfhdsadfhaslkdfhkasdfh;"+user)
+            
 
             res.json(user)});
 }
@@ -96,7 +106,6 @@ module.exports.get_user = (req,res) => {
 module.exports.updateUser=async(req,res)=>{
     console.log(req.body);
     let user = await User.findOne({_id:req.body.id});
-    // console.log("herefasfas" + user)
 
     user.name=req.body.name;
     user.phone_number=req.body.phone_number;
